@@ -59,7 +59,6 @@ button:active {
 
 #game-board {
     display: grid;
-    grid-template-columns: repeat(5, 60px);
     grid-gap: 5px;
     margin-bottom: 20px;
     justify-content: center;
