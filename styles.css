@@ -22,6 +22,41 @@ h1 {
     color: #333;
 }
 
+form {
+    margin-bottom: 20px;
+}
+
+label {
+    margin-right: 10px;
+}
+
+input[type="number"] {
+    width: 60px;
+    padding: 5px;
+    margin-right: 10px;
+    font-size: 1em;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 1em;
+    color: #fff;
+    background-color: #2196f3;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+button:hover {
+    background-color: #1976d2;
+    transform: scale(1.05);
+}
+
+button:active {
+    background-color: #1565c0;
+}
+
 #game-board {
     display: grid;
     grid-template-columns: repeat(5, 60px);
@@ -48,24 +83,4 @@ h1 {
 .cell:hover {
     background-color: #f57c00;
     transform: scale(1.1);
-}
-
-button {
-    padding: 10px 20px;
-    font-size: 1em;
-    color: #fff;
-    background-color: #2196f3;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s;
-}
-
-button:hover {
-    background-color: #1976d2;
-    transform: scale(1.05);
-}
-
-button:active {
-    background-color: #1565c0;
 }
