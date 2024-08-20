@@ -3,14 +3,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const resetBtn = document.getElementById('reset-btn');
     const form = document.getElementById('settings-form');
     let boardSize = { rows: 5, cols: 5 };
-    let gameBoard;
-    let gameActive;
-
-    function createBoard() {
-        board.style.gridTemplateColumns = `repeat(${boardSize.cols}, 60px)`;
-        board.innerHTML = ''; // پاک کردن صفحه
-        for (let row = 0; row < boardSize.rows; row++) {
-            for (let col = 0; col < boardSize.cols; col++) {
+    
+    function createBoard(rows, cols) {
+        board.innerHTML = ''; // پاک کردن محتوای قبلی
+        board.style.gridTemplateColumns = `repeat(${cols}, 60px)`;
+        board.style.gridTemplateRows = `repeat(${rows}, 60px)`;
+        
+        for (let row = 0; row < rows; row++) {
+            for (let col = 0; col < cols; col++) {
                 const cell = document.createElement('div');
                 cell.className = 'cell';
                 cell.dataset.row = row;
@@ -19,9 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 board.appendChild(cell);
             }
         }
-        gameBoard = Array.from({ length: boardSize.rows }, () => Array(boardSize.cols).fill(true));
-        gameActive = true;
-        updateBoard();
+        updateBoard(rows, cols);
     }
 
     function handleCellClick(row, col) {
@@ -33,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        updateBoard();
+        updateBoard(boardSize.rows, boardSize.cols);
 
         if (gameBoard[0][0] === false) {
             gameActive = false;
@@ -41,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    function updateBoard() {
+    function updateBoard(rows, cols) {
         const cells = document.querySelectorAll('.cell');
         cells.forEach(cell => {
             const row = parseInt(cell.dataset.row);
@@ -65,10 +63,19 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         boardSize = { rows, cols };
-        createBoard();
+        gameBoard = Array.from({ length: rows }, () => Array(cols).fill(true));
+        gameActive = true;
+        createBoard(rows, cols);
     });
 
-    resetBtn.addEventListener('click', createBoard);
+    resetBtn.addEventListener('click', () => {
+        gameBoard = Array.from({ length: boardSize.rows }, () => Array(boardSize.cols).fill(true));
+        gameActive = true;
+        createBoard(boardSize.rows, boardSize.cols);
+    });
 
-    createBoard();
+    // Initialize the game with default size
+    let gameBoard = Array.from({ length: boardSize.rows }, () => Array(boardSize.cols).fill(true));
+    let gameActive = true;
+    createBoard(boardSize.rows, boardSize.cols);
 });
