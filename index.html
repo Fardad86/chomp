@@ -12,6 +12,13 @@
 <body>
     <div class="container">
         <h1>Chomp Game</h1>
+        <form id="settings-form">
+            <label for="rows">Rows:</label>
+            <input type="number" id="rows" min="2" max="10" value="5">
+            <label for="cols">Columns:</label>
+            <input type="number" id="cols" min="2" max="10" value="5">
+            <button type="submit">Update Board</button>
+        </form>
         <div id="game-board"></div>
         <button id="reset-btn">Start New Game</button>
     </div>
